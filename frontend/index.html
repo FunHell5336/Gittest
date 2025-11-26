@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Demo</title>
 </head>
-<body style="font-family: sans-serif; text-align:center; margin-top:50px;">
-  <h1>Frontend Connected to Backend</h1>
-  <button onclick="callAPI()">Call Backend</button>
-  <p id="result"></p>
+<body>
+  <h1>Frontend is running 🎉</h1>
+  <button id="btn">Fetch Message from Backend</button>
+  <p id="output"></p>
 
   <script>
-    async function callAPI() {
-      const res = await fetch('https://your-backend-url.onrender.com/api');
-      const data = await res.text();
-      document.getElementById('result').innerText = data;
-    }
+    document.getElementById("btn").addEventListener("click", async () => {
+      try {
+        // ⚠️ THAY đường link backend bên dưới bằng link Render thật của bạn!
+        const response = await fetch("https://dashboard.render.com/project/prj-d4j6p40dl3ps73e8psvg");
+        const data = await response.json();
+        document.getElementById("output").textContent = data.message;
+      } catch (error) {
+        document.getElementById("output").textContent = "❌ Error connecting to backend";
+      }
+    });
   </script>
 </body>
 </html>
